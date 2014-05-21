@@ -1,5 +1,4 @@
 /* This will test the list ADT */
-#include "ListInt.h"
 #include "ListBook.h"
 #include "myinclude.h"
 
@@ -8,77 +7,80 @@ int main ()
 	int testData = 98;
 	int testData2 = 97;
 	int testData3 = 99;
+	char * testTitle1 = "Hello World";
+	char * testTitle2 = "How are you?";
+	char * testTitle3 = "Fine, thanks";
 
 	/* List creation */
 	BookListHndl TheList;
 	TheList = NULL;
-	TheList = NewList();
+	TheList = NewBookList();
 	
-	if(isEmpty(TheList)) printf("The list is empty \n");
+	if(isBookListEmpty(TheList)) printf("The list is empty \n");
 
-	insertAtFront(TheList, testData);
-	insertAtBack(TheList, testData2);
-	insertAtBack(TheList, testData3);
-	insertAtBack(TheList, testData2);
-	insertAtFront(TheList, testData);
-	insertAtBack(TheList, testData2);
-	insertAtFront(TheList, testData);
-	insertAtFront(TheList, testData3);
+	insertBookAtFront(TheList, testTitle1,  testData);
+	insertBookAtBack(TheList, testTitle2, testData2);
+	insertBookAtBack(TheList, testTitle3, testData3);
+	insertBookAtBack(TheList, testTitle2, testData2);
+	insertBookAtFront(TheList, testTitle1, testData);
+	insertBookAtBack(TheList, testTitle2, testData2);
+	insertBookAtFront(TheList, testTitle1, testData);
+	insertBookAtFront(TheList, testTitle3, testData3);
 	
-	printf("Current is %d\n", getCurrent(TheList));
-	moveLast(TheList);
-	printf("Current is %d\n", getCurrent(TheList));
-	moveFirst(TheList);
-	printf("Current is %d\n", getCurrent(TheList));
-	moveNext(TheList);
-	printf("Current is %d\n", getCurrent(TheList));
-	movePrev(TheList);
-	printf("Current is %d\n", getCurrent(TheList));
+	printf("Current is %s\n", getTitleCurrent(TheList));
+	moveLastBookList(TheList);
+	printf("Current is %s\n", getTitleCurrent(TheList));
+	moveFirstBookList(TheList);
+	printf("Current is %s\n", getTitleCurrent(TheList));
+	moveNextBookList(TheList);
+	printf("Current is %s\n", getTitleCurrent(TheList));
+	movePrevBookList(TheList);
+	printf("Current is %s\n", getTitleCurrent(TheList));
 
-	insertBeforeCurrent(TheList, testData2);
-	printf("Inserted %d before %d, which means %d is before %d\n", testData2, testData3, getFirst(TheList), getCurrent(TheList));
+	insertBookBeforeCurrent(TheList, testTitle2, testData2);
+	printf("Inserted %s before %s, which means %s is before %s\n", testTitle2, testTitle3, getTitleFirst(TheList), getTitleCurrent(TheList));
 	
 	printf("Printing the entire list.. ");
-	printList(TheList);
+	printBookList(TheList);
 	
-	deleteFirst(TheList);
-	deleteLast(TheList);
+	deleteFirstBook(TheList);
+	deleteLastBook(TheList);
 	printf("Printing the entire list after deleting first & last.. ");
-	printList(TheList);
-	moveNext(TheList);
-	moveNext(TheList);
-	moveNext(TheList);
-	movePrev(TheList);
-	printf("Printing the entire list after deleting current: %d.. ", getCurrent(TheList));
-	deleteCurrent(TheList);
-	printList(TheList);
+	printBookList(TheList);
+	moveNextBookList(TheList);
+	moveNextBookList(TheList);
+	moveNextBookList(TheList);
+	movePrevBookList(TheList);
+	printf("Printing the entire list after deleting current: %s.. ", getTitleCurrent(TheList));
+	deleteCurrentBook(TheList);
+	printBookList(TheList);
 	
-	moveFirst(TheList);
-	if(isEmpty(TheList)) 
+	moveFirstBookList(TheList);
+	if(isBookListEmpty(TheList)) 
 		printf("The list is empty \n");
 	else
 		printf("The list is NOT empty \n"); 
 	
 	printf("Printing FIRST, CURRENT, LAST... ");
-	printf("%d, %d, %d \n", getFirst(TheList), getCurrent(TheList), getLast(TheList));
+	printf("%s, %s, %s \n", getTitleFirst(TheList), getTitleCurrent(TheList), getTitleLast(TheList));
 	
 	
 	printf("Printing the entire list.. ");
-	printList(TheList);
+	printBookList(TheList);
 	
-	if(isEmpty(TheList)) 
+	if(isBookListEmpty(TheList)) 
 		printf("The list is empty \n");
 	else
 		printf("The list is NOT empty \n"); 
 	
-	makeEmpty(TheList);
+	makeBookListEmpty(TheList);
 	
-	if(isEmpty(TheList)) 
+	if(isBookListEmpty(TheList)) 
 		printf("The list is empty \n");
 	else
 		printf("The list is NOT empty \n"); 
 
-	freeList(&TheList);
+	freeBookList(&TheList);
 	
 	return(0);
 }
