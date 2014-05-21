@@ -31,15 +31,15 @@ int atFirst(ListHndl L);
 int atLast (ListHndl L);
 
 /* Returns the data (number) from the node without altering the function */
-long getFirst(ListHndl L);
-long getLast(ListHndl L);
-long getCurrent(ListHndl L);
+int getFirst(ListHndl L);
+int getLast(ListHndl L);
+int getCurrent(ListHndl L);
 
 /* Inserts something into the beginning of the list, curr stays the same! */
-void insertAtFront(ListHndl L, long data);
+void insertAtFront(ListHndl L, int data);
 
 /*Inserts something into the end of the list, curr stays the same! */
-void insertAtBack(ListHndl L, long data);
+void insertAtBack(ListHndl L, int data);
 
 /* Prints out the entire list to STDOUT, 
  * make sure to change it to print to a file - special case when list is empty*/
@@ -63,7 +63,7 @@ void movePrev(ListHndl L);
 void moveNext(ListHndl L);
 
 /*Inserts a new node before the current node*/
-void insertBeforeCurrent(ListHndl L, long data);
+void insertBeforeCurrent(ListHndl L, int data);
 
 /*Deletes the first element in the list*/
 void deleteFirst(ListHndl L);

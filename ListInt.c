@@ -12,7 +12,7 @@ typedef struct NodeStruct * NodePtr;
 
 typedef struct NodeStruct 
 {
-	void * data;
+	int data;
 	struct NodeStruct* next;
 	struct NodeStruct* prev;
 } NodeStruct;
@@ -82,31 +82,31 @@ int atLast(ListHndl L)
 	return ( (L-> curr == L->last) && offEnd(L) == 1 );
 }
 
-long getFirst(ListHndl L)
+int getFirst(ListHndl L)
 {
 	assert (L != NULL);
 	assert (L->first != NULL);
 	return (L->first->data);
 }
 
-long getLast(ListHndl L)
+int getLast(ListHndl L)
 {
 	assert (L != NULL);
 	assert (L->last != NULL);
 	return (L->last->data);
 }
-long getCurrent(ListHndl L)
+int getCurrent(ListHndl L)
 {
 	assert (L != NULL);
 	assert (L->curr != NULL);
 	return (L->curr->data);
 }
 
-void insertAtFront(ListHndl L, long data)
+void insertAtFront(ListHndl L, int data)
 {
 	NodePtr tempNode;
 	assert (L != NULL);
-	tempNode = malloc ( sizeof(NodeStruct) );
+	tempNode = malloc ( sizeof(struct NodeStruct) );
 
 	tempNode->data = data;
 	tempNode->next = L->first;
@@ -128,11 +128,11 @@ void insertAtFront(ListHndl L, long data)
 	/*printf("Successfully inserted a new node in the front \n");*/
 }
 
-void insertAtBack (ListHndl L, long data)
+void insertAtBack (ListHndl L, int data)
 {
 	NodePtr tempNode;
 	assert (L != NULL);
-	tempNode = malloc ( sizeof(NodeStruct) );
+	tempNode = malloc ( sizeof(struct NodeStruct) );
 	
 	tempNode->data = data;
 	tempNode->next = NULL;
@@ -161,7 +161,7 @@ void printList(ListHndl L)
 	tempCurr = L->first;
 	while(tempCurr != NULL)
 	{
-		printf("%lu ", tempCurr->data);
+		printf("%d ", tempCurr->data);
 		tempCurr = tempCurr->next;
 	}
 	printf("\n");
@@ -174,7 +174,7 @@ void printListFile(ListHndl L, FILE *file)
 	tempCurr = L->first;
 	while(tempCurr != NULL)
 	{
-		fprintf(file, "%lu ", tempCurr->data);
+		fprintf(file, "%d ", tempCurr->data);
 		tempCurr = tempCurr->next;
 	}
 	fprintf(file, "\n");
@@ -227,13 +227,13 @@ void moveNext(ListHndl L)
 	L->curr = L->curr->next;
 }
 
-void insertBeforeCurrent(ListHndl L, long data)
+void insertBeforeCurrent(ListHndl L, int data)
 {
 	NodePtr tempNode;
 	assert (L != NULL);
 	assert (L->curr != NULL);
 	
-	tempNode = malloc ( sizeof(NodeStruct) );
+	tempNode = malloc ( sizeof(struct NodeStruct) );
 	
 	tempNode->data = data;
 	tempNode->next = L->curr;

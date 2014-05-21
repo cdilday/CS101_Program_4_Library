@@ -1,19 +1,19 @@
 # Makefile for List module - by Alex Vincent / Chris Dilday
 
-store : store.o List.o
-	gcc -ansi -Wall -Wextra -pedantic -o store store.o List.o
+#store : store.o List.o
+#	gcc -ansi -Wall -Wextra -pedantic -o store store.o List.o
 
-Listdr : Listdr.o List.o
-	gcc -ansi -Wall -Wextra -pedantic -o Listdr Listdr.o List.o
+ListIntdr : ListIntdr.o ListInt.o
+	gcc -ansi -Wall -Wextra -pedantic -o ListIntdr ListIntdr.o ListInt.o
 	
-List.o : List.h List.c
-	gcc -c -ansi -Wall -Wextra -pedantic List.c
+ListInt.o : ListInt.h ListInt.c
+	gcc -c -ansi -Wall -Wextra -pedantic ListInt.c
 
-store.o : List.h store.c
-	gcc -c -ansi -Wall -Wextra -pedantic store.c
+#store.o : List.h store.c
+#	gcc -c -ansi -Wall -Wextra -pedantic store.c
 
-Listdr.o : List.h Listdr.c
-	gcc -c -ansi -Wall -Wextra -pedantic Listdr.c	
+ListIntdr.o : ListInt.h ListIntdr.c
+	gcc -c -ansi -Wall -Wextra -pedantic ListIntdr.c	
 
 clean :
-	rm store store.o List.o Listdr Listdr.o output.txt
+	rm store store.o ListInt.o ListIntdr ListIntdr.o output.txt
