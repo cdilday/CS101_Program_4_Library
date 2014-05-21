@@ -1,5 +1,6 @@
 /* This will test the list ADT */
 #include "ListInt.h"
+#include "ListBook.h"
 #include "myinclude.h"
 
 int main ()
@@ -9,7 +10,7 @@ int main ()
 	int testData3 = 99;
 
 	/* List creation */
-	IntListHndl TheList;
+	BookListHndl TheList;
 	TheList = NULL;
 	TheList = NewList();
 	

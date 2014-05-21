@@ -4,32 +4,33 @@
 *  together again, but that is why, if ours are similar,
 *  they are so.*/
 
+#include "ListBook.h"
 #include "ListInt.h"
 #include "myinclude.h"
 #include <assert.h>
 
-typedef struct IntNodeStruct * IntNodePtr;
+typedef struct BookNodeStruct * BookNodePtr;
 
-typedef struct IntNodeStruct 
+typedef struct BookNodeStruct 
 {
 	int data;
-	struct IntNodeStruct* next;
-	struct IntNodeStruct* prev;
-} IntNodeStruct;
+	struct BookNodeStruct* next;
+	struct BookNodeStruct* prev;
+} BookNodeStruct;
 
-typedef struct IntListStruct 
+typedef struct BookListStruct 
 {
-	IntNodePtr first;
-	IntNodePtr last;
-	IntNodePtr curr;
-} IntListStruct;
+	BookNodePtr first;
+	BookNodePtr last;
+	BookNodePtr curr;
+} BookListStruct;
 
 /* CONSTRUCTORS / DESTRUCTORS */
 
-IntListHndl NewList () 
+BookListHndl NewList () 
 {
-	IntListHndl tempList;
-	tempList = malloc ( sizeof(IntListStruct) );
+	BookListHndl tempList;
+	tempList = malloc ( sizeof(BookListStruct) );
 	tempList->first = NULL;
 	tempList->last = NULL;
 	tempList->curr = NULL;
@@ -37,9 +38,9 @@ IntListHndl NewList ()
 	return tempList;
 }
 
-void freeList (IntListHndl * L)
+void freeList (BookListHndl * L)
 {
-	IntNodePtr tempCurr;
+	BookNodePtr tempCurr;
 	assert((*L) != NULL);
 	/*FREE THE NODES! */
 	tempCurr = (*(L))->first;
@@ -58,55 +59,55 @@ void freeList (IntListHndl * L)
 	/*printf( "Freed the list! \n" );*/
 }
 
-int isEmpty(IntListHndl L) 
+int isEmpty(BookListHndl L) 
 {
 	assert (L != NULL);
 	return (L->first == NULL);
 }
 
-int offEnd(IntListHndl L) 
+int offEnd(BookListHndl L) 
 {
 	assert (L != NULL);
 	return (L->curr == NULL);
 }
 
-int atFirst(IntListHndl L)
+int atFirst(BookListHndl L)
 {
 	assert (L != NULL);
 	return ( (L->curr == L->first) && offEnd(L) == 1 );
 }
 
-int atLast(IntListHndl L)
+int atLast(BookListHndl L)
 {
 	assert (L != NULL);
 	return ( (L-> curr == L->last) && offEnd(L) == 1 );
 }
 
-int getFirst(IntListHndl L)
+int getFirst(BookListHndl L)
 {
 	assert (L != NULL);
 	assert (L->first != NULL);
 	return (L->first->data);
 }
 
-int getLast(IntListHndl L)
+int getLast(BookListHndl L)
 {
 	assert (L != NULL);
 	assert (L->last != NULL);
 	return (L->last->data);
 }
-int getCurrent(IntListHndl L)
+int getCurrent(BookListHndl L)
 {
 	assert (L != NULL);
 	assert (L->curr != NULL);
 	return (L->curr->data);
 }
 
-void insertAtFront(IntListHndl L, int data)
+void insertAtFront(BookListHndl L, int data)
 {
-	IntNodePtr tempNode;
+	BookNodePtr tempNode;
 	assert (L != NULL);
-	tempNode = malloc ( sizeof(struct IntNodeStruct) );
+	tempNode = malloc ( sizeof(struct BookNodeStruct) );
 
 	tempNode->data = data;
 	tempNode->next = L->first;
@@ -128,11 +129,11 @@ void insertAtFront(IntListHndl L, int data)
 	/*printf("Successfully inserted a new node in the front \n");*/
 }
 
-void insertAtBack (IntListHndl L, int data)
+void insertAtBack (BookListHndl L, int data)
 {
-	IntNodePtr tempNode;
+	BookNodePtr tempNode;
 	assert (L != NULL);
-	tempNode = malloc ( sizeof(struct IntNodeStruct) );
+	tempNode = malloc ( sizeof(struct BookNodeStruct) );
 	
 	tempNode->data = data;
 	tempNode->next = NULL;
@@ -154,9 +155,9 @@ void insertAtBack (IntListHndl L, int data)
 	/*printf("Successfully inserted a new node into the back \n");*/
 }
 
-void printList(IntListHndl L)
+void printList(BookListHndl L)
 {
-	IntNodePtr tempCurr;
+	BookNodePtr tempCurr;
 	assert (L != NULL);
 	tempCurr = L->first;
 	while(tempCurr != NULL)
@@ -167,9 +168,9 @@ void printList(IntListHndl L)
 	printf("\n");
 }
 
-void printListFile(IntListHndl L, FILE *file)
+void printListFile(BookListHndl L, FILE *file)
 {
-	IntNodePtr tempCurr;
+	BookNodePtr tempCurr;
 	assert (L != NULL);
 	tempCurr = L->first;
 	while(tempCurr != NULL)
@@ -180,9 +181,9 @@ void printListFile(IntListHndl L, FILE *file)
 	fprintf(file, "\n");
 }  	
 
-void makeEmpty(IntListHndl L)
+void makeEmpty(BookListHndl L)
 {
-	IntNodePtr tempCurr;
+	BookNodePtr tempCurr;
 	assert (L != NULL);
 	tempCurr = L->first;
 	L->curr = L->first;
@@ -199,41 +200,41 @@ void makeEmpty(IntListHndl L)
 	/*printf("The list is now empty\n");*/
 }
 
-void moveFirst(IntListHndl L)
+void moveFirst(BookListHndl L)
 {
 	assert (L != NULL);
 	assert (L->first != NULL);
 	L->curr = L->first;
 }
 
-void moveLast(IntListHndl L)
+void moveLast(BookListHndl L)
 {
 	assert (L != NULL);
 	assert (L->first != NULL);
 	L->curr = L->last;
 }
 
-void movePrev(IntListHndl L)
+void movePrev(BookListHndl L)
 {
 	assert (L != NULL);
 	assert (L->curr != NULL);
 	L->curr = L->curr->prev;
 } 
 
-void moveNext(IntListHndl L)
+void moveNext(BookListHndl L)
 {
 	assert (L != NULL);
 	assert (L->curr != NULL);
 	L->curr = L->curr->next;
 }
 
-void insertBeforeCurrent(IntListHndl L, int data)
+void insertBeforeCurrent(BookListHndl L, int data)
 {
-	IntNodePtr tempNode;
+	BookNodePtr tempNode;
 	assert (L != NULL);
 	assert (L->curr != NULL);
 	
-	tempNode = malloc ( sizeof(struct IntNodeStruct) );
+	tempNode = malloc ( sizeof(struct BookNodeStruct) );
 	
 	tempNode->data = data;
 	tempNode->next = L->curr;
@@ -253,7 +254,7 @@ void insertBeforeCurrent(IntListHndl L, int data)
 	
 }
 
-void deleteFirst(IntListHndl L)
+void deleteFirst(BookListHndl L)
 {
 	assert (L != NULL);
 	assert (L->first != NULL);
@@ -266,7 +267,7 @@ void deleteFirst(IntListHndl L)
 	}
 	else
 	{
-		IntNodePtr tempCurr;
+		BookNodePtr tempCurr;
 		tempCurr = L->first->next;
 		free(L->first);
 		L->first = tempCurr;
@@ -274,7 +275,7 @@ void deleteFirst(IntListHndl L)
 	L->first->prev = NULL;
 }
 
-void deleteLast(IntListHndl L)
+void deleteLast(BookListHndl L)
 {
 	assert (L != NULL);
 	assert (L->first != NULL);
@@ -287,7 +288,7 @@ void deleteLast(IntListHndl L)
 	}
 	else
 	{
-		IntNodePtr tempCurr;
+		BookNodePtr tempCurr;
 		tempCurr = L->last->prev;
 		free(L->last);
 		L->last = tempCurr;
@@ -295,7 +296,7 @@ void deleteLast(IntListHndl L)
 	L->last->next = NULL;
 }
 
-void deleteCurrent(IntListHndl L)
+void deleteCurrent(BookListHndl L)
 {
 	assert (L != NULL);
 	assert (L->first != NULL);
