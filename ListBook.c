@@ -135,7 +135,6 @@ void insertBookAtFront(BookListHndl L, char * title, int id)
 	IntListHndl bookIDs;
 	bookIDs = NULL;
 	bookIDs = NewList();
-	tempNode->bookIDs = malloc (sizeof(&bookIDs));
 	tempNode->bookIDs = &bookIDs;
 	insertAtFront(*(tempNode->bookIDs), id);
 	tempNode->next = L->first;
@@ -168,9 +167,7 @@ void insertBookAtBack (BookListHndl L, char * title, int id)
 	IntListHndl bookIDs;
 	bookIDs = NULL;
 	bookIDs = NewList();
-	tempNode->bookIDs = malloc (sizeof(&bookIDs));
 	tempNode->bookIDs = &bookIDs;
-	insertAtFront(*(tempNode->bookIDs), id);
 	insertAtFront(*(tempNode->bookIDs), id);
 	tempNode->next = NULL;
 	tempNode->prev = L->last;
@@ -199,7 +196,7 @@ void printBookList(BookListHndl L)
 	while(tempCurr != NULL)
 	{
 		printf("%s ", tempCurr->title);
-		printList(*(tempCurr->bookIDs));
+		/*printList(*(tempCurr->bookIDs));*/
 		tempCurr = tempCurr->next;
 	}
 	printf("\n");
@@ -279,9 +276,7 @@ void insertBookBeforeCurrent(BookListHndl L, char * title, int id)
 	IntListHndl bookIDs;
 	bookIDs = NULL;
 	bookIDs = NewList();
-	tempNode->bookIDs = malloc (sizeof(&bookIDs));
 	tempNode->bookIDs = &bookIDs;
-	insertAtFront(*(tempNode->bookIDs), id);
 	insertAtFront(*(tempNode->bookIDs), id);
 	tempNode->next = L->curr;
 	tempNode->prev = L->curr->prev;

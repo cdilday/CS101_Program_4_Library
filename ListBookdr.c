@@ -43,10 +43,10 @@ int main ()
 	movePrevBookList(TheList);
 	printf("Current is %s\n", getTitleCurrent(TheList));
 
-	insertBookBeforeCurrent(TheList, testTitle2, testData2);
-	printf("Inserted %s before %s, which means %s is before %s\n", testTitle2, testTitle3, getTitleFirst(TheList), getTitleCurrent(TheList));
+	insertBookBeforeCurrent(TheList, testTitle2, testData);
+	printf("Inserted %s before %s, which means %s is before %s", testTitle2, testTitle3, getTitleFirst(TheList), getTitleCurrent(TheList));
 	
-	printf("Printing the entire list.. \n");
+	printf("Printing the entire list.. ");
 	printBookList(TheList);
 	
 	deleteFirstBook(TheList);
