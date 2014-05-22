@@ -130,7 +130,13 @@ void insertBookAtFront(BookListHndl L, char * title, int id)
 	assert (L != NULL);
 	tempNode = malloc ( sizeof(struct BookNodeStruct) );
 
+	tempNode->title = malloc (( title) );
 	tempNode->title = title;
+	IntListHndl bookIDs;
+	bookIDs = NULL;
+	bookIDs = NewList();
+	tempNode->bookIDs = malloc (sizeof(&bookIDs));
+	tempNode->bookIDs = &bookIDs;
 	insertAtFront(*(tempNode->bookIDs), id);
 	tempNode->next = L->first;
 	tempNode->prev = NULL;
@@ -157,7 +163,14 @@ void insertBookAtBack (BookListHndl L, char * title, int id)
 	assert (L != NULL);
 	tempNode = malloc ( sizeof(struct BookNodeStruct) );
 	
+	tempNode->title = malloc ( sizeof(title) );
 	tempNode->title = title;
+	IntListHndl bookIDs;
+	bookIDs = NULL;
+	bookIDs = NewList();
+	tempNode->bookIDs = malloc (sizeof(&bookIDs));
+	tempNode->bookIDs = &bookIDs;
+	insertAtFront(*(tempNode->bookIDs), id);
 	insertAtFront(*(tempNode->bookIDs), id);
 	tempNode->next = NULL;
 	tempNode->prev = L->last;
@@ -187,7 +200,6 @@ void printBookList(BookListHndl L)
 	{
 		printf("%s ", tempCurr->title);
 		printList(*(tempCurr->bookIDs));
-		printf("\n");
 		tempCurr = tempCurr->next;
 	}
 	printf("\n");
@@ -202,7 +214,6 @@ void printBookListFile(BookListHndl L, FILE *file)
 	{
 		fprintf(file, "%s ", tempCurr->title);
 		printListFile(*(tempCurr->bookIDs), file);
-		fprintf(file, "\n");
 		tempCurr = tempCurr->next;
 	}
 	fprintf(file, "\n");
@@ -263,7 +274,14 @@ void insertBookBeforeCurrent(BookListHndl L, char * title, int id)
 	
 	tempNode = malloc ( sizeof(struct BookNodeStruct) );
 	
+	tempNode->title = malloc ( sizeof(title) );
 	tempNode->title = title;
+	IntListHndl bookIDs;
+	bookIDs = NULL;
+	bookIDs = NewList();
+	tempNode->bookIDs = malloc (sizeof(&bookIDs));
+	tempNode->bookIDs = &bookIDs;
+	insertAtFront(*(tempNode->bookIDs), id);
 	insertAtFront(*(tempNode->bookIDs), id);
 	tempNode->next = L->curr;
 	tempNode->prev = L->curr->prev;

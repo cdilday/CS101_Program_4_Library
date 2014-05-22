@@ -7,9 +7,15 @@ int main ()
 	int testData = 98;
 	int testData2 = 97;
 	int testData3 = 99;
-	char * testTitle1 = "Hello World";
-	char * testTitle2 = "How are you?";
-	char * testTitle3 = "Fine, thanks";
+	char testString[] ="Hello World";
+	char testString2[] ="How are you?";
+	char testString3[] ="Fine thanks";
+	char * testTitle1;
+	char * testTitle2; 
+	char * testTitle3; 
+	testTitle1 = testString;
+	testTitle2 = testString2; 
+	testTitle3 = testString3; 
 
 	/* List creation */
 	BookListHndl TheList;
@@ -40,18 +46,18 @@ int main ()
 	insertBookBeforeCurrent(TheList, testTitle2, testData2);
 	printf("Inserted %s before %s, which means %s is before %s\n", testTitle2, testTitle3, getTitleFirst(TheList), getTitleCurrent(TheList));
 	
-	printf("Printing the entire list.. ");
+	printf("Printing the entire list.. \n");
 	printBookList(TheList);
 	
 	deleteFirstBook(TheList);
 	deleteLastBook(TheList);
-	printf("Printing the entire list after deleting first & last.. ");
+	printf("Printing the entire list after deleting first & last.. \n");
 	printBookList(TheList);
 	moveNextBookList(TheList);
 	moveNextBookList(TheList);
 	moveNextBookList(TheList);
 	movePrevBookList(TheList);
-	printf("Printing the entire list after deleting current: %s.. ", getTitleCurrent(TheList));
+	printf("Printing the entire list after deleting current: %s.. \n", getTitleCurrent(TheList));
 	deleteCurrentBook(TheList);
 	printBookList(TheList);
 	
@@ -61,10 +67,8 @@ int main ()
 	else
 		printf("The list is NOT empty \n"); 
 	
-	printf("Printing FIRST, CURRENT, LAST... ");
-	printf("%s, %s, %s \n", getTitleFirst(TheList), getTitleCurrent(TheList), getTitleLast(TheList));
-	
-	
+	printf("Printing FIRST, CURRENT, LAST... \n");
+	printf("%s, %s, %s", getTitleFirst(TheList), getTitleCurrent(TheList), getTitleLast(TheList));
 	printf("Printing the entire list.. ");
 	printBookList(TheList);
 	
