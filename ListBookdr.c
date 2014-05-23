@@ -24,12 +24,8 @@ int main ()
 	
 	if(isBookListEmpty(TheList)) printf("The list is empty \n");
 
-	insertBookAtFront(TheList, testTitle1,  testData);
-	insertBookAtBack(TheList, testTitle2, testData2);
-	insertBookAtBack(TheList, testTitle3, testData3);
-	insertBookAtBack(TheList, testTitle2, testData2);
 	insertBookAtFront(TheList, testTitle1, testData);
-	insertBookAtBack(TheList, testTitle2, testData2);
+	insertBookAtFront(TheList, testTitle1, testData);
 	insertBookAtFront(TheList, testTitle1, testData);
 	insertBookAtFront(TheList, testTitle3, testData3);
 	
@@ -43,7 +39,6 @@ int main ()
 	movePrevBookList(TheList);
 	printf("Current is %s\n", getTitleCurrent(TheList));
 
-	insertBookBeforeCurrent(TheList, testTitle2, testData);
 	printf("Inserted %s before %s, which means %s is before %s", testTitle2, testTitle3, getTitleFirst(TheList), getTitleCurrent(TheList));
 	
 	printf("Printing the entire list.. ");
@@ -53,15 +48,9 @@ int main ()
 	deleteLastBook(TheList);
 	printf("Printing the entire list after deleting first & last.. \n");
 	printBookList(TheList);
-	moveNextBookList(TheList);
-	moveNextBookList(TheList);
-	moveNextBookList(TheList);
-	movePrevBookList(TheList);
 	printf("Printing the entire list after deleting current: %s.. \n", getTitleCurrent(TheList));
-	deleteCurrentBook(TheList);
-	printBookList(TheList);
-	
 	moveFirstBookList(TheList);
+	printBookList(TheList);
 	if(isBookListEmpty(TheList)) 
 		printf("The list is empty \n");
 	else
