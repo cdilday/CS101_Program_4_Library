@@ -184,6 +184,12 @@ void insertBookAtBack (BookListHndl L, char * title, int id)
 	/*printf("Successfully inserted a new node into the back \n");*/
 }
 
+void insertID(BookListHndl L, int id)
+{
+	assert (L != NULL);
+	insertAtBack(L->curr->bookIDs, id);
+}
+
 void printBookList(BookListHndl L)
 {
 	BookNodePtr tempCurr;
@@ -191,7 +197,6 @@ void printBookList(BookListHndl L)
 	tempCurr = L->first;
 	while(tempCurr != NULL)
 	{
-		printf("%s ", tempCurr->title);
 		printList(tempCurr->bookIDs);
 		tempCurr = tempCurr->next;
 	}
@@ -211,6 +216,12 @@ void printBookListFile(BookListHndl L, FILE *file)
 	}
 	fprintf(file, "\n");
 }  	
+
+void printCurrentIDs(BookListHndl L)
+{
+	assert (L != NULL);
+	printList(L->curr->bookIDs);
+}
 
 void makeBookListEmpty(BookListHndl L)
 {

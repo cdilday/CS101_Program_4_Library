@@ -1,5 +1,8 @@
 # Makefile for Library and drivers for IntList, BookList, and Hashtable modules - by Chris Dilday
 
+Library : Library.o ListBook.o ListInt.o HashTable.o
+	gcc -ansi -Wall -Wextra -pedantic -o Library Library.o ListBook.o ListInt.o HashTable.o
+
 ListIntdr : ListIntdr.o ListInt.o
 	gcc -ansi -Wall -Wextra -pedantic -o ListIntdr ListIntdr.o ListInt.o
 	

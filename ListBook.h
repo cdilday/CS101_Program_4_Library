@@ -47,12 +47,18 @@ void insertBookAtFront(BookListHndl L, char * title, int id);
 /*Inserts something into the end of the list, curr stays the same! */
 void insertBookAtBack(BookListHndl L, char * title, int id);
 
+/*Inserts ID into the current Intlist*/
+void insertID(BookListHndl L, int id);
+
 /* Prints out the entire list to STDOUT, 
  * make sure to change it to print to a file - special case when list is empty*/
 void printBookList(BookListHndl L);
 
 /* Prints entire list to A FILE*/
 void printBookListFile(BookListHndl L, FILE *file);
+
+/*Prints the IDs from the current intlist*/
+void printCurrentIDs(BookListHndl L);
 
 /*Makes the list empty by going through and freeing nodes. Sets first, curr, and last to null*/
 void makeBookListEmpty(BookListHndl L);

@@ -5,7 +5,7 @@
 #include "myinclude.h"
 #include <assert.h>
 
-typedef struct HashTableStruct 
+typedef struct HashTableStruct
 {
 	BookListHndl *table;
 	int size;
@@ -13,27 +13,17 @@ typedef struct HashTableStruct
 
 /* CONSTRUCTORS / DESTRUCTORS */
 
-HashTableHndl NewHashTable (int size) 
+HashTableHndl NewHashTable (int size)
 {
 	HashTableHndl tempHndl;
-	tempHndl->table = NULL;
+	tempHndl = malloc(sizeof(HashTableStruct));
 	int i;
-	printf("1\n");
 	tempHndl->size = size;
-	printf("%d\n", tempHndl->size);
-	BookListHndl tempTable[size];
-	printf("2\n");
+	tempHndl->table = malloc(size * sizeof(BookListHndl));
 	for( i = 0; i < size; i++)
 	{
-		tempTable[i] = NewBookList();
-		printf("%d\n", i);
+		tempHndl->table[i] = NewBookList();
 	}
-	printf("3\n");
-	tempHndl->table = malloc ( sizeof(tempTable) );
-	printf("4\n");
-	tempHndl->table = &tempTable;
-	
-	printf("5\n");
 	return tempHndl;
 }
 
@@ -63,10 +53,23 @@ void insertIntoHashTable (HashTableHndl H, char * title, int id)
 		hash = ((hash << 5) + hash) + c;
 
 	hash = hash % H->size;
-	printf("%d\n", hash);
+
+	if(!isEmpty((H->table)[hash]))
+	{
+		moveFirstBookList((H->table)[hash]);
+		while (!offEndBookList((H->table)[hash]))
+		{
+			if(strcmp(getTitleCurrent((H->table)[hash]), title) == 0)
+			{
+				insertID((H->table)[hash], id);
+				return;
+			}
+			moveNextBookList((H->table)[hash]);
+		}
+	}
 	
-	insertBookAtFront(&(H->table)[hash], title, id);
-	printf("%s\n", getTitleFirst(H->table[hash]));
+	insertBookAtFront((H->table)[hash], title, id);
+	moveFirstBookList((H->table)[hash]);
 }
 
 void printTableElement (HashTableHndl H, char * title)
@@ -79,7 +82,19 @@ void printTableElement (HashTableHndl H, char * title)
 		hash = ((hash << 5) + hash) + c;
 
 	hash = hash % H->size;
-	printf("%d\n", hash);
+	if(!(isBookListEmpty((H->table)[hash])))
+	{	
+		moveFirstBookList((H->table)[hash]);
+		while (!offEndBookList((H->table)[hash]))
+		{
+			if(strcmp(getTitleCurrent((H->table)[hash]), title) == 0)
+			{
+				printCurrentIDs((H->table)[hash]);
+				return;
+			}
+			moveNextBookList((H->table)[hash]);
+		}
+	}
 	
-	printBookList(&(H->table[hash]));
+	printf("Not Found\n");
 }

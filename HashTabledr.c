@@ -12,22 +12,30 @@ int main ()
 	char testString2[] ="How are you?";
 	char testString3[] ="Fine thanks";
 	char * testTitle1;
-	char * testTitle2; 
-	char * testTitle3; 
+	char * testTitle2;
+	char * testTitle3;
 	testTitle1 = testString;
-	testTitle2 = testString2; 
-	testTitle3 = testString3; 
-	
+	testTitle2 = testString2;
+	testTitle3 = testString3;
+
 	printf("Making the table\n");
 	HashTableHndl TheTable;
 	TheTable = NULL;
 	printf("Instantiating the table\n");
 	TheTable = NewHashTable(20);
-	
+
 	printf("inserting into the Table\n");
-	insertIntoHashTable (TheTable, testTitle2, testData);
-	printf("Printing the table element\n");
-	printTableElement (TheTable, testTitle2);
+	insertIntoHashTable (TheTable, testTitle1, testData);
+	insertIntoHashTable (TheTable, testTitle1, testData);
+	insertIntoHashTable (TheTable, testTitle1, testData);
 	
+	insertIntoHashTable (TheTable, testTitle2, testData);
+	insertIntoHashTable (TheTable, testTitle2, testData2);
+	insertIntoHashTable (TheTable, testTitle2, testData3);
+	printf("Printing the table element\n");
+	printTableElement (TheTable, testTitle1);
+	
+	printTableElement (TheTable, testTitle2);
+
 	return(0);
 }
