@@ -90,11 +90,12 @@ void printTableElement (HashTableHndl H, char * title)
 			if(strcmp(getTitleCurrent((H->table)[hash]), title) == 0)
 			{
 				printCurrentIDs((H->table)[hash]);
+				moveFirstBookList((H->table)[hash]);
 				return;
 			}
 			moveNextBookList((H->table)[hash]);
 		}
 	}
-	
-	printf("Not Found\n");
+	moveFirstBookList((H->table)[hash]);
+	printf("\n");
 }

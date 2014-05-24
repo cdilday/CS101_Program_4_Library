@@ -34,7 +34,8 @@ int main (int argc, char *argv[])
 		pbuff = buffer;
 		pbuff += 2;
 		printf("%d %s\n", tempID, pbuff);
-		insertIntoHashTable(Library, tempName, pbuff);
+		insertIntoHashTable(Library, pbuff, tempID);
+		printTableElement (Library, pbuff);
 
 	}
 	/*close file one and open file 2*/
@@ -50,7 +51,7 @@ int main (int argc, char *argv[])
 		pbuff = buffer;
 		sscanf(pbuff, "%[^\n]", buffer);
 		pbuff = buffer;
-		printf("Searching for: %s\n", pbuff);
+		printf("%s\n", pbuff);
 		printTableElement (Library, pbuff);
 	}
 	
