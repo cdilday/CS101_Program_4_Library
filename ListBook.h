@@ -1,4 +1,4 @@
-/* Here will go the prototype functions for the List ADT 
+/* Here will go the prototype functions for the BookList ADT 
 *  This is identical to the List ADT file Alex Vincent and
 *  I used for Program 2 since none of it needs to be changed*/
 #include "ListInt.h"

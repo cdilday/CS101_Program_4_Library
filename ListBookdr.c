@@ -1,4 +1,4 @@
-/* This will test the list ADT */
+/* This will test the BookList ADT */
 #include "ListBook.h"
 #include "myinclude.h"
 

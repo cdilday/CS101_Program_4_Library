@@ -1,4 +1,4 @@
-/* This will test the list ADT */
+/* This will test the HashTable ADT */
 #include "ListBook.h"
 #include "HashTable.h"
 #include "myinclude.h"

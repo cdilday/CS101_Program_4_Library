@@ -1,5 +1,5 @@
-/* Here will go the implementation of the List ADT. 
-*  This ADT is an altered version of the List ADT I
+/* Here will go the implementation of the BookList ADT. 
+*  This ADT is an altered version of the List ADT I made
 *  with Alex Vincent for Program 2. We are not working
 *  together again, but that is why, if ours are similar,
 *  they are so.*/

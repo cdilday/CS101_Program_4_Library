@@ -1,4 +1,4 @@
-# Makefile for List module - by Chris Dilday
+# Makefile for Library and drivers for IntList, BookList, and Hashtable modules - by Chris Dilday
 
 ListIntdr : ListIntdr.o ListInt.o
 	gcc -ansi -Wall -Wextra -pedantic -o ListIntdr ListIntdr.o ListInt.o
