@@ -15,9 +15,9 @@ typedef struct HashTableStruct
 
 HashTableHndl NewHashTable (int size)
 {
+	int i;
 	HashTableHndl tempHndl;
 	tempHndl = malloc(sizeof(HashTableStruct));
-	int i;
 	tempHndl->size = size;
 	tempHndl->table = malloc(size * sizeof(BookListHndl));
 	for( i = 0; i < size; i++)
@@ -34,7 +34,7 @@ void freeHashTable (HashTableHndl H)
 
 	for( i = 0; i < H->size; i++)
 	{
-		freeBookList(H->table[i]);
+		freeBookList(&(H->table[i]));
 	}
 	free(H);
 	H = NULL;
@@ -46,39 +46,42 @@ void freeHashTable (HashTableHndl H)
 void insertIntoHashTable (HashTableHndl H, char * title, int id)
 {
 	assert (H != NULL);
-	unsigned int hash = 5381;
+	unsigned int hash;
 	int c;
-
-	while (c = *title++)
+	char * tempTitle1;
+	char * tempTitle2;
+	tempTitle1 = malloc(sizeof(char) * 50);
+	tempTitle2 = malloc(sizeof(char) * 50);
+	
+	strcpy(tempTitle1, title);
+	strcpy(tempTitle2, tempTitle1);
+	/*printf("trying to insert %s\n", title);
+	//printf("with tempTitle %s\n", tempTitle);*/
+	
+	hash = 5381;
+	while (c = *tempTitle2++)
 		hash = ((hash << 5) + hash) + c;
 
 	hash = hash % H->size;
-
-	if(!isEmpty((H->table)[hash]))
-	{
-		moveFirstBookList((H->table)[hash]);
-		while (!offEndBookList((H->table)[hash]))
-		{
-			if(strcmp(getTitleCurrent((H->table)[hash]), title) == 0)
-			{
-				insertID((H->table)[hash], id);
-				return;
-			}
-			moveNextBookList((H->table)[hash]);
-		}
-	}
-	
-	insertBookAtFront((H->table)[hash], title, id);
-	moveFirstBookList((H->table)[hash]);
+	/*printf("trying to insert %s\n", title);*/
+	insertBook((H->table)[hash], tempTitle1, id);
 }
 
 void printTableElement (HashTableHndl H, char * title)
 {
 	assert (H != NULL);
-	unsigned int hash = 5381;
+	unsigned int hash;
 	int c;
+	char * tempTitle1;
+	char * tempTitle2;
+	tempTitle1 = malloc(sizeof(char) * 50);
+	tempTitle2 = malloc(sizeof(char) * 50);
+	
+	strcpy(tempTitle1, title);
+	strcpy(tempTitle2, tempTitle1);
 
-	while (c = *title++)
+	hash = 5381;
+	while (c = *tempTitle2++)
 		hash = ((hash << 5) + hash) + c;
 
 	hash = hash % H->size;
@@ -87,7 +90,7 @@ void printTableElement (HashTableHndl H, char * title)
 		moveFirstBookList((H->table)[hash]);
 		while (!offEndBookList((H->table)[hash]))
 		{
-			if(strcmp(getTitleCurrent((H->table)[hash]), title) == 0)
+			if(strcmp(getTitleCurrent((H->table)[hash]), tempTitle1) == 0)
 			{
 				printCurrentIDs((H->table)[hash]);
 				moveFirstBookList((H->table)[hash]);

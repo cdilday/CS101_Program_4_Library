@@ -8,7 +8,7 @@ int main (int argc, char *argv[])
 {
 	int numBooks;
 	int numSlots;
-	char buffer[100000];
+	char buffer[128];
 	char *pbuff;
 	char *tempName;
 	int i;
@@ -18,6 +18,7 @@ int main (int argc, char *argv[])
 	argc = argc;
 	file = fopen (argv[1], "r");
 	/*read in numbers from first file input*/
+	pbuff = malloc(sizeof(char) * 128); 
 	fgets(buffer, sizeof buffer, file);
 	pbuff = buffer;
 	sscanf(pbuff, "%d %d", &numBooks, &numSlots);
@@ -31,12 +32,12 @@ int main (int argc, char *argv[])
 	{
 		pbuff = buffer;
 		sscanf(pbuff, "%d %[^\n]", &tempID, buffer);
-		pbuff = buffer;
 		pbuff += 2;
-		printf("%d %s\n", tempID, pbuff);
-		insertIntoHashTable(Library, pbuff, tempID);
-		printTableElement (Library, pbuff);
-
+		char *tempName = malloc(sizeof(char) * 50); 
+		strcpy(tempName, pbuff);
+		/*printf("%d %s\n", tempID, tempName);*/
+		insertIntoHashTable(Library, tempName, tempID);
+		/*printTableElement (Library, tempName);*/
 	}
 	/*close file one and open file 2*/
 	fclose(file);
@@ -50,10 +51,13 @@ int main (int argc, char *argv[])
 	{
 		pbuff = buffer;
 		sscanf(pbuff, "%[^\n]", buffer);
-		pbuff = buffer;
-		printf("%s\n", pbuff);
-		printTableElement (Library, pbuff);
+		char *tempName = malloc(sizeof(char) * 50); 
+		strcpy(tempName, pbuff);
+		/*printf("%s\n", tempName);*/
+		printTableElement (Library, tempName);
 	}
+	
+	freeHashTable(Library);
 	
 	return 0;
 }

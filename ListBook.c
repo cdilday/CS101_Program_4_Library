@@ -49,7 +49,7 @@ void freeBookList (BookListHndl * L)
 	while((*(L))->curr != NULL)
 	{
 		tempCurr = (*(L))->curr->next;
-		freeList((*L)->curr->bookIDs);
+		freeList(&((*L)->curr->bookIDs));
 		free((*(L))->curr); 
 		(*(L))->curr = tempCurr;
 	}
@@ -125,15 +125,37 @@ IntListHndl * getIDsCurrent(BookListHndl L)
 	return (L->curr->bookIDs);
 }
 
-void insertBookAtFront(BookListHndl L, char * title, int id)
+void insertBook(BookListHndl L, char * title, int id)
 {
 
 	BookNodePtr tempNode;
+	char * tempTitle;
 	assert (L != NULL);
+	tempTitle = malloc(sizeof(char) * 50);
+	
+	strcpy(tempTitle, title);
+	
+	if(L->first != NULL)
+	{
+		L->curr = L->first;
+		while (L->curr != NULL)
+		{
+		/*printf("comparing %s and %s, which gives %d\n", L->curr->title, title, strcmp(L->curr->title, tempTitle) );*/
+			if(strcmp(L->curr->title, tempTitle) == 0)
+			{
+				insertID(L, id);
+				L->curr = L->first;
+				return;
+			}
+			L->curr = L->curr->next;
+		}
+	}
+	L->curr = L->first;
+	
 	tempNode = malloc ( sizeof(struct BookNodeStruct) );
 
-	tempNode->title = malloc (( title) );
-	tempNode->title = title;
+	tempNode->title = malloc ( sizeof(char) * 50 );
+	strcpy(tempNode->title, tempTitle);
 	tempNode->bookIDs = NewList();
 	insertAtFront(tempNode->bookIDs, id);
 	tempNode->next = L->first;
@@ -151,37 +173,8 @@ void insertBookAtFront(BookListHndl L, char * title, int id)
 		L->first->prev = tempNode;
 		L->first = tempNode;
 	}
-
+	L->curr = L->first;
 	/*printf("Successfully inserted a new node in the front \n");*/
-}
-
-void insertBookAtBack (BookListHndl L, char * title, int id)
-{
-	BookNodePtr tempNode;
-	assert (L != NULL);
-	tempNode = malloc ( sizeof(struct BookNodeStruct) );
-	
-	tempNode->title = malloc (( title) );
-	tempNode->title = title;
-	tempNode->bookIDs = NewList();
-	insertAtFront(tempNode->bookIDs, id);
-	tempNode->next = NULL;
-	tempNode->prev = L->last;
-	
-	if(L->last == NULL)
-	/*this means we're adding the first element, meaning L needs to have curr, first, & last assigned.*/
-	{
-		L->last = tempNode;
-		L->first = tempNode;
-		L->curr = tempNode;
-	}
-	else
-	{
-		L->last->next = tempNode;
-		L->last = tempNode;
-	}
-
-	/*printf("Successfully inserted a new node into the back \n");*/
 }
 
 void insertID(BookListHndl L, int id)
@@ -268,35 +261,6 @@ void moveNextBookList(BookListHndl L)
 	assert (L != NULL);
 	assert (L->curr != NULL);
 	L->curr = L->curr->next;
-}
-
-void insertBookBeforeCurrent(BookListHndl L, char * title, int id)
-{
-	BookNodePtr tempNode;
-	assert (L != NULL);
-	assert (L->curr != NULL);
-	
-	tempNode = malloc ( sizeof(struct BookNodeStruct) );
-	
-	tempNode->title = malloc (( title) );
-	tempNode->title = title;
-	tempNode->bookIDs = NewList();
-	insertAtFront(tempNode->bookIDs, id);
-	tempNode->next = L->curr;
-	tempNode->prev = L->curr->prev;
-
-	L->curr->prev = tempNode;
-	if(L->first == L->curr)
-	{
-		L->first = tempNode;
-	}
-	else
-	{
-		tempNode->prev->next = tempNode;
-	}
-
-	/*printf("Successfully inserted a new node before the current node\n");*/
-	
 }
 
 void deleteFirstBook(BookListHndl L)

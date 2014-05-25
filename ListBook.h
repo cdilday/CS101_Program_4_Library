@@ -42,10 +42,7 @@ IntListHndl * getIDsLast(BookListHndl L);
 IntListHndl * getIDsCurrent(BookListHndl L);
 
 /* Inserts something into the beginning of the list, curr stays the same! */
-void insertBookAtFront(BookListHndl L, char * title, int id);
-
-/*Inserts something into the end of the list, curr stays the same! */
-void insertBookAtBack(BookListHndl L, char * title, int id);
+void insertBook(BookListHndl L, char * title, int id);
 
 /*Inserts ID into the current Intlist*/
 void insertID(BookListHndl L, int id);
@@ -74,9 +71,6 @@ void movePrevBookList(BookListHndl L);
 
 /*Moves the current marker to the next element*/
 void moveNextBookList(BookListHndl L);
-
-/*Inserts a new node before the current node*/
-void insertBookBeforeCurrent(BookListHndl L, char * title, int id);
 
 /*Deletes the first element in the list*/
 void deleteFirstBook(BookListHndl L);
