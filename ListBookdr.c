@@ -24,10 +24,10 @@ int main ()
 	
 	if(isBookListEmpty(TheList)) printf("The list is empty \n");
 
-	insertBookAtFront(TheList, testTitle1, testData);
-	insertBookAtFront(TheList, testTitle1, testData);
-	insertBookAtFront(TheList, testTitle1, testData);
-	insertBookAtFront(TheList, testTitle3, testData3);
+	insertBook(TheList, testTitle1, testData);
+	insertBook(TheList, testTitle1, testData);
+	insertBook(TheList, testTitle1, testData);
+	insertBook(TheList, testTitle3, testData3);
 	
 	printf("Current is %s\n", getTitleCurrent(TheList));
 	moveLastBookList(TheList);

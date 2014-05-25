@@ -1,5 +1,5 @@
-I, Christopher Dilday (cdilday@ucsc.edu), partnered with Alex Vincent, (avincent@ucsc.edu), for this project.
+I, Christopher Dilday (cdilday@ucsc.edu) madde this program alone. I enlisted the aid of a few friends when bugs appeared, but did not directly use code or work with anyone else.
 
-We collaborated by splitting making the ADT into two different kinds of functions to be handled, made them, combined them, and then tested them together in Listdr. Then, we split the work again for store.c and then recombined them, doing a significant amount of pair programming to debug and check for memory issues.
+Library.c is the main program, HashTable.c/.h is the HashTableADT, ListBook.c/.h is the first Linked List containing the title and book ID, and ListInt.c/.h is the linked list containing book IDs. The linked lists are based off the ADT I made for Program 2 when I worked with Alex Vincent, and their drivers may be a bit out of date as I changed a lot of things after making sure they worked so don't bother trying them. This definitely works with the provided files, so type "make" and then run "Libray <fileinput> <fileinputrequests>"
 
 If you need any more information please let me know.
